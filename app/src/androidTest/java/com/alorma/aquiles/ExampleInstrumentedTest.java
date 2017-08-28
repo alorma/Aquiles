@@ -14,6 +14,8 @@ import org.junit.runner.RunWith;
 
 import java.util.UUID;
 
+import static com.alorma.aquiles.Stub.stub;
+
 /**
  * Instrumentation test, which will execute on an Android device.
  *
@@ -36,7 +38,7 @@ public class ExampleInstrumentedTest {
 
         Response response = new BodyResponse("users/user_id_response.json").setStatusCode(204);
 
-        new Stub(server).stub(request, response);
+        stub(server, request, response);
     }
 
     @Test
@@ -50,7 +52,7 @@ public class ExampleInstrumentedTest {
 
         Response response = new BodyResponse("users/user_new.json").setStatusCode(404);
 
-        new Stub(server).stub(request, response);
+        stub(server, request, response);
     }
 
     @Test
@@ -59,6 +61,6 @@ public class ExampleInstrumentedTest {
 
         Request request = Request.delete().setPath(path);
 
-        new Stub(server).stub(request);
+        stub(server, request, 200);
     }
 }
