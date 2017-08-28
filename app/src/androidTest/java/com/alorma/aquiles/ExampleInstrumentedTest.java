@@ -32,7 +32,6 @@ public class ExampleInstrumentedTest {
         Request request = Request.get()
                 .setPath(path)
                 .withQuery("extend", "true")
-                .withHeader("token", UUID.randomUUID().toString())
                 .withHeader("token", UUID.randomUUID().toString());
 
         Response response = new BodyResponse("users/user_id_response.json").setStatusCode(204);
@@ -47,7 +46,6 @@ public class ExampleInstrumentedTest {
         Request request = Request.post()
                 .setPath(path)
                 .withQuery("extend", "true")
-                .withHeader("token", UUID.randomUUID().toString())
                 .withHeader("token", UUID.randomUUID().toString());
 
         Response response = new BodyResponse("users/user_new.json").setStatusCode(404);
