@@ -1,4 +1,4 @@
-package com.alorma.aquiles;
+package com.alorma.aquiles.util;
 
 import android.content.Context;
 

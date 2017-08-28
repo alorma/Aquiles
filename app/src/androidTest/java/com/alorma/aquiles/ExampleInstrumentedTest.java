@@ -1,13 +1,18 @@
 package com.alorma.aquiles;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.alorma.aquiles.request.Path;
+import com.alorma.aquiles.request.Request;
+import com.alorma.aquiles.response.BodyResponse;
+import com.alorma.aquiles.response.Response;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
+
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import java.util.UUID;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -16,11 +21,46 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
-    @Test
-    public void useAppContext() throws Exception {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.alorma.aquiles", appContext.getPackageName());
+    @Rule
+    WireMockRule server = new WireMockRule();
+
+    @Test
+    public void buildGet() {
+        Path path = new Path.Builder().setPath("/users/{userId}").setExactPath(false).build();
+
+        Request request = Request.get()
+                .setPath(path)
+                .withQuery("extend", "true")
+                .withHeader("token", UUID.randomUUID().toString())
+                .withHeader("token", UUID.randomUUID().toString());
+
+        Response response = new BodyResponse("users/user_id_response.json").setStatusCode(204);
+
+        new Stub(server).stub(request, response);
+    }
+
+    @Test
+    public void buildPost() {
+        Path path = new Path.Builder().setPath("/users/{userId}").build();
+
+        Request request = Request.post()
+                .setPath(path)
+                .withQuery("extend", "true")
+                .withHeader("token", UUID.randomUUID().toString())
+                .withHeader("token", UUID.randomUUID().toString());
+
+        Response response = new BodyResponse("users/user_new.json").setStatusCode(404);
+
+        new Stub(server).stub(request, response);
+    }
+
+    @Test
+    public void buildDelete() {
+        Path path = new Path.Builder().setPath("/users/{userId}").setExactPath(false).build();
+
+        Request request = Request.delete().setPath(path);
+
+        new Stub(server).stub(request);
     }
 }
