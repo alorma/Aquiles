@@ -6,9 +6,9 @@ import com.github.tomakehurst.wiremock.client.MappingBuilder;
 import com.github.tomakehurst.wiremock.client.WireMock;
 
 class PutRequest extends Request {
-    @NonNull
-    @Override
-    protected MappingBuilder createMappingBuilder(Path path) {
-        return WireMock.put(path.build());
-    }
+  @NonNull
+  @Override
+  protected MappingBuilder createMappingBuilder(Path path) {
+    return WireMock.put(path.build());
+  }
 }

@@ -8,15 +8,15 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 
 public class PathResponse extends Response {
 
-    private String fileName;
+  private String fileName;
 
-    public PathResponse(String fileName) {
-        this.fileName = fileName;
-    }
+  public PathResponse(String fileName) {
+    this.fileName = fileName;
+  }
 
-    @Override
-    public ResponseDefinitionBuilder buildResponse() {
-        String responseString = JsonReaderUtil.getStringFromFile(getInstrumentation().getContext(), fileName);
-        return aResponse().withBody(responseString);
-    }
+  @Override
+  public ResponseDefinitionBuilder buildResponse() {
+    String responseString = JsonReaderUtil.getStringFromFile(getInstrumentation().getContext(), fileName);
+    return aResponse().withBody(responseString);
+  }
 }

@@ -7,15 +7,15 @@ import com.alorma.aquiles.response.StatusResponse;
 import com.github.tomakehurst.wiremock.WireMockServer;
 
 public class Stub {
-    public static void stub(WireMockServer server, Request request, Response response) {
-        server.stubFor(request.build().willReturn(response.build()));
-    }
+  public static void stub(WireMockServer server, Request request, Response response) {
+    server.stubFor(request.build().willReturn(response.build()));
+  }
 
-    public static void stub(WireMockServer server, Request request) {
-        server.stubFor(request.build().willReturn(new EmptyResponse().build()));
-    }
+  public static void stub(WireMockServer server, Request request) {
+    server.stubFor(request.build().willReturn(new EmptyResponse().build()));
+  }
 
-    public static void stub(WireMockServer server, Request request, int statusCode) {
-        server.stubFor(request.build().willReturn(new StatusResponse(statusCode).build()));
-    }
+  public static void stub(WireMockServer server, Request request, int statusCode) {
+    server.stubFor(request.build().willReturn(new StatusResponse(statusCode).build()));
+  }
 }

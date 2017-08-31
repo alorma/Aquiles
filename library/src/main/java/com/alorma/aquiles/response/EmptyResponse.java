@@ -6,8 +6,8 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 
 public class EmptyResponse extends Response {
 
-    @Override
-    public ResponseDefinitionBuilder buildResponse() {
-        return aResponse();
-    }
+  @Override
+  public ResponseDefinitionBuilder buildResponse() {
+    return aResponse();
+  }
 }

@@ -6,12 +6,12 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 
 public class StatusResponse extends Response {
 
-    public StatusResponse(int statusCode) {
-        setStatusCode(statusCode);
-    }
+  public StatusResponse(int statusCode) {
+    setStatusCode(statusCode);
+  }
 
-    @Override
-    protected ResponseDefinitionBuilder buildResponse() {
-        return aResponse();
-    }
+  @Override
+  protected ResponseDefinitionBuilder buildResponse() {
+    return aResponse();
+  }
 }

@@ -4,16 +4,16 @@ import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder;
 
 public abstract class Response {
 
-    private int statusCode = 200;
+  private int statusCode = 200;
 
-    public Response setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
-        return this;
-    }
+  public Response setStatusCode(int statusCode) {
+    this.statusCode = statusCode;
+    return this;
+  }
 
-    public ResponseDefinitionBuilder build() {
-        return buildResponse().withStatus(statusCode);
-    }
+  public ResponseDefinitionBuilder build() {
+    return buildResponse().withStatus(statusCode);
+  }
 
-    protected abstract ResponseDefinitionBuilder buildResponse();
+  protected abstract ResponseDefinitionBuilder buildResponse();
 }
