@@ -21,3 +21,5 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext.aquilesVersion = '0.0.1'

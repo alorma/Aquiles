@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 26
@@ -34,4 +35,13 @@ dependencies {
         exclude group: 'com.fasterxml.jackson.core'
     }
     testCompile 'junit:junit:4.12'
+}
+
+publish {
+    userOrg = 'alorma'
+    groupId = 'com.alorma'
+    artifactId = 'aquiles'
+    publishVersion = aquilesVersion
+    desc = 'Wiremock made easy'
+    website = 'https://github.com/alorma/Aquiles'
 }

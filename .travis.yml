@@ -1,0 +1,31 @@
+language: android
+jdk: oraclejdk8
+branches:
+  only:
+    - master
+    - /^v\d+\.\d+\.\d+$/
+android:
+  components:
+  - tools
+  - tools
+  - platform-tools
+  - build-tools-25.0.3
+  - android-25
+  - extra
+  - addon
+
+  licenses:
+    - 'android-sdk-license-.+'
+env:
+  global:
+    - secure: "Te9svQrL8zFxxvz14ddVCIgkd+YyBWAWl/+gLqoJGX8H6Zc8xUUA/VS0Z0S/P4ZiZuM+Nt2dggeJRQQCVBaicMLr2FRfvPSc8TV8EsFTiaGrfEKreWjO2y54cShku5X4cAxQTWAYSejlpQSOxnmcedCYgDsfL7zyORr7JygP7NZvYM4fqpS07E4fHK9/JVW4XJLfsu7c26OHwxFvCcjWqEKA2Jzo+g2ZRHrCozxioO5QBiER43SWO67N0RfwOag2b67e4nWd3WfsaNXY7uWsTzRzvOFDDAptVWXdxfGEATsPMVA5IpepY2a6YZkbx+9LnWk6iFsHPwESSD/xetQN6ttvZeXfK9KJT9syYTNLiBDvseBa5Zwyv2dUn83gdPh5Z8ty18tBs4FF4qbgS8dS1f22mGOc3vtDQxW/rZ0nC9J+Mh1AONYtNmSvtIVhRVNDyGNoDUPw06Uk7ABUHeBfVPq1GEBuMOtTm7xSl/xVeXObtD4phKlVx6myF9ur4sFWAsnoahGOiuaLtRQoHt39D1eAFJszG4Ui1f+n64dgQ0GUc8KSqesBnkRExt/YqbZWiM/7avghv+h95YxXDuXcZvhO0umQCdUKvBSGt7Ng9qAqziuCjK/SP9QAS7pe0e2tj5U2f9Iv7CwFI1vHXr1J7IhsidFPKhU5JA+df0GdHXM="
+    - secure: "S7BMgL16bx+SJqoKFAckm/WWZKLlkQU8FPcAksqIZHqwkOqgEEnIrGBn9eNVeCC2fri7XWVoPBNtY6UHLJlamaJDYHGJWzKLejgcboHturmlLVCIt6/asNqtg5LZ9sJxMRV7Xo3xMfbsSpklP9fcReTrogZSv8cA5yCh0fQjYVWAYH1ugoZ52118bvwFq6USF8rgC3V6hr4Lrv/lOFSMmqs7UekdI4LgFwQz/QREydqT9LYL7F09n1TipSzbsHDoUoVNPNBE6WL1AdPvkd6Ib7i9kgkINxthtFFzJEJsBsTUoQoSA855lbRE4tReW+EQDcdPVNkoGRu7kJNX45Iah7ZWFg1gPLyNeUosEMqBqIPKANX1Y3mtzAG8pNz2FzpiDR1j1wwxwxN6POiaMkoCYXaJKH1KThXpFHREPbTMkO+t+VdyqHq75Bn4yB99RdZz3TndD9Swf8JpsvnhVcVBYps6EvQMLufsRp9jJlbiulledk1SNoXApWfd8Am8oxata+bOuZ6Zpsqt0i+mcVhhMm1tRBSV1nd7eYsx2VYEwnQPFbE+EcyeQ1vmTZSZPPfw09M5mObfWV78ltVPAq8jcBnrkWXoCaATcmCCgwPY4Wm8xbWbf460zlYAlZw4h2ManwSYZ64FDOsFlvOxwm9/oKt1tT5Nkx3fPDxDAZV8EgU="
+
+script:
+  - ./gradlew build bintrayUpload -PbintrayUser=dryrun-user -PbintrayKey=dryrun-key -PdryRun=true
+deploy:
+  - provider: script
+    script: scripts/bintrayUpload.sh
+    skip_cleanup: true
+    on:
+      tags: true
